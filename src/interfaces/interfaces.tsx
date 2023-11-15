@@ -1,15 +1,37 @@
-import { ReactNode } from "react";
+interface Column {
+  label: string;
+  accessor: string;
+  sortable: boolean;
+  sortByOrder: string;
+}
+
+export interface TableBodyProps {
+  columns: Column[];
+  tableData: EmployeeState["employees"];
+  selectEntries: number;
+}
+
+export interface TableHeadProps {
+  columns: Column[];
+  handleSorting: (accessor: string, sortOrder: string) => void;
+}
+
+export interface TableProps {
+  employees: EmployeeState["employees"];
+  columns: Column[];
+}
 
 export interface EmployeeState {
   employees: Array<{
-    firstName: string | undefined;
-    lastName: string | undefined;
-    dateBirth: ReactNode;
-    startDate: ReactNode;
-    departements: string | undefined;
-    street: string | undefined;
-    city: string | undefined;
-    selectState: string | undefined;
+    firstName: string;
+    lastName: string;
+    dateBirth: string;
+    startDate: string;
+    departements: string;
+    street: string;
+    city: string;
+    selectState: string;
+    zipCode: number;
   }>;
 }
 
@@ -19,6 +41,7 @@ export interface AdressProps {
   setSelectState: React.Dispatch<React.SetStateAction<string>>;
   allDepartement: string[];
   setDepartements: React.Dispatch<React.SetStateAction<string>>;
+  setZipCode: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface InformationProps {

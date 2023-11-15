@@ -7,6 +7,7 @@ export const Adress: React.FC<AdressProps> = ({
   setSelectState,
   allDepartement,
   setDepartements,
+  setZipCode,
 }) => {
   return (
     <>
@@ -27,7 +28,11 @@ export const Adress: React.FC<AdressProps> = ({
           ))}
         </select>
         <label htmlFor="zip-code">zip code</label>
-        <input id="zip-code" type="number" />
+        <input
+          id="zip-code"
+          type="number"
+          onChange={(e) => setZipCode(parseInt(e.target.value))}
+        />
       </fieldset>
       <label htmlFor="departement">departement</label>
       <select

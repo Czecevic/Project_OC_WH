@@ -5,9 +5,8 @@ import "../style/App.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 // redux
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAddEmployee } from "../store/Employee.stores";
-import { selectEmployee } from "../store/Employee.stores";
 // components
 import { Information } from "../components/Information";
 import { Adress } from "../components/Adress";
@@ -22,10 +21,10 @@ export const Homepage = () => {
   const [street, setStreet] = useState<string>();
   const [city, setCity] = useState<string>();
   const [selectState, setSelectState] = useState<string>("Alabama");
+  const [zipCode, setZipCode] = useState<number>(0);
 
   // const
   const dispatch = useDispatch();
-  const employee = useSelector(selectEmployee);
   const allDepartement = [
     "Sales",
     "Marketing",
@@ -45,6 +44,7 @@ export const Homepage = () => {
       street,
       city,
       selectState,
+      zipCode,
     };
     dispatch(getAddEmployee(storedEmployee));
     alert("vous avez rajouter un utilisateur");
@@ -76,6 +76,7 @@ export const Homepage = () => {
             setSelectState={setSelectState}
             allDepartement={allDepartement}
             setDepartements={setDepartements}
+            setZipCode={setZipCode}
           />
           <button type="submit">save</button>
         </form>
