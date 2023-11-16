@@ -35,19 +35,24 @@ export const Homepage = () => {
 
   const addEmployee = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const storedEmployee = {
-      firstName,
-      lastName,
-      dateBirth: dateBirth?.toISOString() || "",
-      startDate: startDate?.toISOString() || "",
-      departements,
-      street,
-      city,
-      selectState,
-      zipCode,
-    };
-    dispatch(getAddEmployee(storedEmployee));
-    alert("vous avez rajouter un utilisateur");
+    const yearOfDateBirth = dateBirth?.toDateString().split(" ")[3];
+    if (parseInt(yearOfDateBirth) < 2005) {
+      const storedEmployee = {
+        firstName,
+        lastName,
+        dateBirth: dateBirth?.toISOString() || "",
+        startDate: startDate?.toISOString() || "",
+        departements,
+        street,
+        city,
+        selectState,
+        zipCode,
+      };
+      dispatch(getAddEmployee(storedEmployee));
+      alert("vous avez rajouter un utilisateur");
+    } else {
+      alert("vous devez avoir 18 ans minimum");
+    }
   };
 
   return (

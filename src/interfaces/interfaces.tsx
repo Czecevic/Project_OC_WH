@@ -18,7 +18,6 @@ export interface TableHeadProps {
 
 export interface TableProps {
   employees: EmployeeState["employees"];
-  columns: Column[];
 }
 
 export interface EmployeeState {

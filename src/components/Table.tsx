@@ -10,15 +10,19 @@ export const Table: React.FunctionComponent<TableProps> = ({ employees }) => {
     employees: employees,
     columns,
   });
+  const [searchElement, setSearchElement] = useState<string[]>(tableData);
   const [selectEntries, setSelectEntries] = useState<number>(10);
-
-  const searchElement = (e: string) => {
+  const search = (e: string) => {
     const resultSearch = e.toLowerCase();
     if (resultSearch.length > 2) {
-      tableData.forEach((element: string) => {
-        const info = Object.values(element);
-        // console.log(info.includes(resultSearch), info, e);
-      });
+      const filterEmployee = tableData.filter((info) =>
+        Object.values(info).some(
+          (val) => typeof val === "string" && val.includes(e)
+        )
+      );
+      setSearchElement(filterEmployee);
+    } else {
+      setSearchElement(tableData);
     }
   };
 
@@ -38,7 +42,7 @@ export const Table: React.FunctionComponent<TableProps> = ({ employees }) => {
         </div>
         <div className="SearchBar">
           <label>Search</label>
-          <input onChange={(e) => searchElement(e.target.value)} />
+          <input onChange={(e) => search(e.target.value)} />
         </div>
       </div>
       <table className="table">
@@ -47,6 +51,8 @@ export const Table: React.FunctionComponent<TableProps> = ({ employees }) => {
           columns={columns}
           tableData={tableData}
           selectEntries={selectEntries}
+          searchElement={searchElement}
+          setSearchElement={setSearchElement}
         />
       </table>
     </>
