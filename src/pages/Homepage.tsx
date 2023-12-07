@@ -19,10 +19,10 @@ export const Homepage: React.FC = () => {
     lastName: "",
     dateBirth: "",
     startDate: "",
-    departements: "",
+    departements: "sales",
     street: "",
     city: "",
-    selectState: "",
+    selectState: "Alabama",
     zipCode: 0,
   });
 
@@ -38,14 +38,25 @@ export const Homepage: React.FC = () => {
 
   const addEmployee = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // date de debut
+    const startDate =
+      employee.startDate instanceof Date
+        ? employee.startDate.toISOString()
+        : null;
+    // date de naissance
     const dateOfBirth =
       employee.dateBirth instanceof Date
         ? employee.dateBirth.toISOString()
         : null;
     const yearOfDateBirth = new Date(employee.dateBirth || "").getFullYear();
     if (yearOfDateBirth < 2005) {
-      dispatch(getAddEmployee({ ...employee, dateBirth: dateOfBirth }));
-      console.log(typeof dateOfBirth);
+      dispatch(
+        getAddEmployee({
+          ...employee,
+          startDate: startDate,
+          dateBirth: dateOfBirth,
+        })
+      );
       alert("vous avez rajouter un utilisateur");
     } else {
       alert("vous devez avoir 18 ans minimum");
@@ -54,7 +65,6 @@ export const Homepage: React.FC = () => {
 
   const handleInformationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    console.log(id, value);
     setEmployee((prevEmployee) => ({ ...prevEmployee, [id]: value }));
   };
 
@@ -62,7 +72,6 @@ export const Homepage: React.FC = () => {
     const { name, value } = e.target;
     setEmployee((prevEmployee) => ({ ...prevEmployee, [name]: value }));
   };
-
   return (
     <div>
       <div className="title">

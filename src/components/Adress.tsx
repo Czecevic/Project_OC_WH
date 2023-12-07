@@ -3,7 +3,6 @@ import { AdressProps } from "../interfaces/interfaces";
 
 export const Adress: React.FunctionComponent<AdressProps> = ({
   handleAdressChange,
-  employee,
   allDepartement,
 }) => {
   // console.log(employee);

@@ -32,7 +32,6 @@ export interface EmployeeState {
 
 export interface AdressProps {
   handleAdressChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  employee: EmployeeState;
   setemployee: React.Dispatch<React.SetStateAction<EmployeeState>>;
   allDepartement: string[];
 }
