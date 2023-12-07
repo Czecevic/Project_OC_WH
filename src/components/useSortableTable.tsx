@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { EmployeeState } from "../interfaces/interfaces";
-import { TableProps } from "../interfaces/interfaces";
 
-export const useStorableTable: React.FunctionComponent<TableProps> = ({
-  employees,
-}) => {
+export const useStorableTable = ({ employees }: EmployeeState) => {
   const [tableData, setTableData] = useState(employees);
 
   const handleSorting = (
@@ -26,5 +23,5 @@ export const useStorableTable: React.FunctionComponent<TableProps> = ({
     }
   };
 
-  return [tableData, handleSorting];
+  return { tableData, handleSorting } as const;
 };

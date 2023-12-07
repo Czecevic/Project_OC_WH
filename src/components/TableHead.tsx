@@ -9,12 +9,12 @@ export const TableHead: FunctionComponent<TableHeadProps> = ({
   const [sortField, setSortField] = useState<string>("");
   const [order, setOrder] = useState<string>("asc");
 
-  const handleSortingChange = (accessor: string) => {
+  const handleSortingChange = (sortField: string) => {
     const sortOfOrder =
-      accessor === sortField && order === "asc" ? "desc" : "asc";
-    setSortField(accessor);
+      sortField === sortField && order === "asc" ? "desc" : "asc";
+    setSortField(sortField);
     setOrder(sortOfOrder);
-    handleSorting(accessor, sortOfOrder);
+    handleSorting(sortField, sortOfOrder);
   };
   return (
     <thead>

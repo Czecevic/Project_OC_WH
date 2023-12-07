@@ -10,18 +10,21 @@ import { getAddEmployee } from "../store/Employee.stores";
 // components
 import { Information } from "../components/Information";
 import { Adress } from "../components/Adress";
+import { EmployeeState } from "../interfaces/interfaces";
 
-export const Homepage = () => {
+export const Homepage: React.FC = () => {
   // state
-  const [firstName, setFirstName] = useState<string>();
-  const [lastName, setLastName] = useState<string>();
-  const [dateBirth, setDateBirth] = useState<Date>();
-  const [startDate, setStartDate] = useState<Date>();
-  const [departements, setDepartements] = useState<string>("Sales");
-  const [street, setStreet] = useState<string>();
-  const [city, setCity] = useState<string>();
-  const [selectState, setSelectState] = useState<string>("Alabama");
-  const [zipCode, setZipCode] = useState<number>(0);
+  const [employee, setEmployee] = useState<EmployeeState>({
+    firstName: "",
+    lastName: "",
+    dateBirth: "",
+    startDate: "",
+    departements: "",
+    street: "",
+    city: "",
+    selectState: "",
+    zipCode: 0,
+  });
 
   // const
   const dispatch = useDispatch();
@@ -35,24 +38,29 @@ export const Homepage = () => {
 
   const addEmployee = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const yearOfDateBirth = dateBirth?.toDateString().split(" ")[3];
-    if (parseInt(yearOfDateBirth) < 2005) {
-      const storedEmployee = {
-        firstName,
-        lastName,
-        dateBirth: dateBirth?.toISOString() || "",
-        startDate: startDate?.toISOString() || "",
-        departements,
-        street,
-        city,
-        selectState,
-        zipCode,
-      };
-      dispatch(getAddEmployee(storedEmployee));
+    const dateOfBirth =
+      employee.dateBirth instanceof Date
+        ? employee.dateBirth.toISOString()
+        : null;
+    const yearOfDateBirth = new Date(employee.dateBirth || "").getFullYear();
+    if (yearOfDateBirth < 2005) {
+      dispatch(getAddEmployee({ ...employee, dateBirth: dateOfBirth }));
+      console.log(typeof dateOfBirth);
       alert("vous avez rajouter un utilisateur");
     } else {
       alert("vous devez avoir 18 ans minimum");
     }
+  };
+
+  const handleInformationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    console.log(id, value);
+    setEmployee((prevEmployee) => ({ ...prevEmployee, [id]: value }));
+  };
+
+  const handleAdressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setEmployee((prevEmployee) => ({ ...prevEmployee, [name]: value }));
   };
 
   return (
@@ -70,18 +78,14 @@ export const Homepage = () => {
           onSubmit={(e) => addEmployee(e)}
         >
           <Information
-            setFirstName={setFirstName}
-            setLastName={setLastName}
-            setDateBirth={setDateBirth}
-            setStartDate={setStartDate}
+            handleInformationChange={handleInformationChange}
+            employee={employee}
+            setEmployee={setEmployee}
           />
           <Adress
-            setStreet={setStreet}
-            setCity={setCity}
-            setSelectState={setSelectState}
+            handleAdressChange={handleAdressChange}
+            employee={employee}
             allDepartement={allDepartement}
-            setDepartements={setDepartements}
-            setZipCode={setZipCode}
           />
           <button type="submit">save</button>
         </form>

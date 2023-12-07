@@ -7,45 +7,38 @@ interface Column {
 
 export interface TableBodyProps {
   columns: Column[];
-  tableData: EmployeeState["employees"];
+  tableData: EmployeeState;
   selectEntries: number;
+  searchElement: EmployeeState;
+  setSearchElement: React.Dispatch<React.SetStateAction<EmployeeState>>;
 }
 
 export interface TableHeadProps {
   columns: Column[];
-  handleSorting: (accessor: string, sortOrder: string) => void;
-}
-
-export interface TableProps {
-  employees: EmployeeState["employees"];
+  handleSorting: (sortField: keyof EmployeeState, sortOrder: string) => void;
 }
 
 export interface EmployeeState {
-  employees: Array<{
-    firstName: string;
-    lastName: string;
-    dateBirth: string;
-    startDate: string;
-    departements: string;
-    street: string;
-    city: string;
-    selectState: string;
-    zipCode: number;
-  }>;
+  firstName: string;
+  lastName: string;
+  dateBirth: string | Date;
+  startDate: string | Date;
+  departements: string;
+  street: string;
+  city: string;
+  selectState: string;
+  zipCode: number;
 }
 
 export interface AdressProps {
-  setStreet: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setCity: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setSelectState: React.Dispatch<React.SetStateAction<string>>;
+  handleAdressChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  employee: EmployeeState;
+  setemployee: React.Dispatch<React.SetStateAction<EmployeeState>>;
   allDepartement: string[];
-  setDepartements: React.Dispatch<React.SetStateAction<string>>;
-  setZipCode: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface InformationProps {
-  setFirstName: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setLastName: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setDateBirth: React.Dispatch<React.SetStateAction<Date | undefined>>;
-  setStartDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
+  handleInformationChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  employee: EmployeeState;
+  setEmployee: React.Dispatch<React.SetStateAction<EmployeeState>>;
 }

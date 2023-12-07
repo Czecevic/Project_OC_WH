@@ -1,16 +1,22 @@
 import { InformationProps } from "../interfaces/interfaces";
 
 export const Information: React.FC<InformationProps> = ({
-  setFirstName,
-  setLastName,
-  setDateBirth,
-  setStartDate,
+  handleInformationChange,
+  employee,
+  setEmployee,
 }) => {
+  // console.log(handleInformationChange, employee);
   const getDateBirth = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setDateBirth(new Date(e.target.value));
+    setEmployee({
+      ...employee,
+      dateBirth: new Date(e.target.value),
+    });
   };
   const getStartDate = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setStartDate(new Date(e.target.value));
+    setEmployee({
+      ...employee,
+      startDate: new Date(e.target.value),
+    });
   };
   return (
     <>
@@ -18,13 +24,13 @@ export const Information: React.FC<InformationProps> = ({
       <input
         type="text"
         id="firstName"
-        onChange={(e) => setFirstName(e.target.value)}
+        onChange={(e) => handleInformationChange(e)}
       ></input>
       <label htmlFor="lastName">Last Name</label>
       <input
         type="text"
         id="lastName"
-        onChange={(e) => setLastName(e.target.value)}
+        onChange={(e) => handleInformationChange(e)}
       ></input>
       <label htmlFor="dateBirth">date of birth</label>
       <input
