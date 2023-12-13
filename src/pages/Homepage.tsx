@@ -25,6 +25,8 @@ export const Homepage: React.FC = () => {
     selectState: "Alabama",
     zipCode: 0,
   });
+  const [saveEmployee, setSaveEmployee] = useState<string>("nothing");
+  const [isOpen, setIsOpen] = useState<boolean>(true);
 
   // const
   const dispatch = useDispatch();
@@ -57,9 +59,9 @@ export const Homepage: React.FC = () => {
           dateBirth: dateOfBirth,
         })
       );
-      alert("vous avez rajouter un utilisateur");
+      setSaveEmployee("addEmployee");
     } else {
-      alert("vous devez avoir 18 ans minimum");
+      setSaveEmployee("notAddEmployee");
     }
   };
 
@@ -96,8 +98,24 @@ export const Homepage: React.FC = () => {
             employee={employee}
             allDepartement={allDepartement}
           />
-          <button type="submit">save</button>
+          <button type="submit" onClick={() => setIsOpen(true)}>
+            save
+          </button>
         </form>
+        {isOpen === true &&
+          (saveEmployee === "addEmployee" ? (
+            <div className="popupvalide">
+              <button onClick={() => setIsOpen(false)}>X</button>
+              <p>Employee Created!</p>
+            </div>
+          ) : (
+            saveEmployee === "notAddEmployee" && (
+              <div className="popup">
+                <button onClick={() => setIsOpen(false)}>X</button>
+                <p>Employee was not created, check your information</p>
+              </div>
+            )
+          ))}
       </div>
     </div>
   );

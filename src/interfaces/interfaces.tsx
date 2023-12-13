@@ -15,10 +15,17 @@ export interface TableBodyProps {
 
 export interface TableHeadProps {
   columns: Column[];
-  handleSorting: (sortField: keyof EmployeeState, sortOrder: string) => void;
+  handleSorting: (sortField: string, sortOrder: string) => void;
 }
 
 export interface EmployeeState {
+  length: number;
+  map(
+    arg0: (
+      data: EmployeeState,
+      index: number
+    ) => import("react/jsx-runtime").JSX.Element | undefined
+  ): import("react").ReactNode;
   firstName: string;
   lastName: string;
   dateBirth: string | Date;

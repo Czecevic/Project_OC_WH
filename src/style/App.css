@@ -82,3 +82,75 @@ th {
 .read-the-docs {
   color: #888;
 }
+
+/* popup  */
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  right: 35%;
+  font-size: 20px;
+  border-radius: 15px;
+  background: #1a1a1a;
+  color: crimson;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+}
+
+.popupvalide {
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  right: 35%;
+  font-size: 20px;
+  border-radius: 15px;
+  background: #1a1a1a;
+  color: lightgreen;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+}
+
+.popup button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* calendrier */
+.react-date-picker {
+  width: 100%;
+}
+
+.react-date-picker__calendar .react-calendar {
+  background-color: #1a1a1a;
+  border-radius: 5px;
+}
+
+.react-calendar__navigation__label:disabled {
+  color: #1a1a1a;
+}
+
+.react-calendar__navigation button:disabled {
+  color: #1a1a1a;
+}
+
+.react-date-picker__calendar .react-calendar button:hover {
+  color: #1a1a1a;
+}
+
+.react-date-picker__button svg {
+  filter: invert(100%);
+}
+
+.react-date-picker__button:enabled:hover .react-date-picker__button__icon,
+.react-date-picker__button:enabled:focus .react-date-picker__button__icon {
+  stroke: #ffffff;
+}

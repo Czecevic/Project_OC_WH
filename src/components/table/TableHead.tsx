@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from "react";
-import { TableHeadProps } from "../interfaces/interfaces";
+import { TableHeadProps } from "../../interfaces/interfaces";
 
 export const TableHead: FunctionComponent<TableHeadProps> = ({
   columns,

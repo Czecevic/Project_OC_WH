@@ -1,13 +1,13 @@
 import { TableBody } from "./TableBody";
 import { TableHead } from "./TableHead";
 import { useStorableTable } from "./useSortableTable";
-import { EmployeeState } from "../interfaces/interfaces";
-import { columns } from "../data/Columns";
+import { EmployeeState } from "../../interfaces/interfaces";
+import { columns } from "../../data/Columns";
 import { useState } from "react";
 
-export const Table = ({ employees }: EmployeeState) => {
+export const Table = (employees: EmployeeState) => {
   // const
-  const { tableData, handleSorting } = useStorableTable({ employees });
+  const { tableData, handleSorting } = useStorableTable(employees);
   const [searchElement, setSearchElement] = useState<EmployeeState>(tableData);
   const [selectEntries, setSelectEntries] = useState<number>(10);
 
@@ -17,9 +17,7 @@ export const Table = ({ employees }: EmployeeState) => {
     if (resultSearch.length > 2) {
       const filterEmployee = tableData.filter(
         (info: { [s: string]: unknown } | ArrayLike<unknown>) =>
-          Object.values(info).some(
-            (val) => typeof val === "string" && val.includes(resultSearch)
-          )
+          Object.values(info).join("").toLowerCase().includes(resultSearch)
       );
       setSearchElement(filterEmployee);
     } else {
