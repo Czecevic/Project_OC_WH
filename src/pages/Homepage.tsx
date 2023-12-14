@@ -98,7 +98,11 @@ export const Homepage: React.FC = () => {
             employee={employee}
             allDepartement={allDepartement}
           />
-          <button type="submit" onClick={() => setIsOpen(true)}>
+          <button
+            type="submit"
+            className="saveButton"
+            onClick={() => setIsOpen(true)}
+          >
             save
           </button>
         </form>
