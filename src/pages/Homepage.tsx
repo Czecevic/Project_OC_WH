@@ -3,7 +3,7 @@
 import "../style/App.css";
 // react
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useRef, useState } from "react";
 // redux
 import { useDispatch } from "react-redux";
 import { getAddEmployee } from "../store/Employee.stores";
@@ -14,7 +14,20 @@ import { EmployeeState } from "../interfaces/interfaces";
 
 export const Homepage: React.FC = () => {
   // state
-  const [employee, setEmployee] = useState<EmployeeState>({
+  // const [employee, setEmployee] = useState<EmployeeState>({
+  //   firstName: "",
+  //   lastName: "",
+  //   dateBirth: "",
+  //   startDate: "",
+  //   departements: "sales",
+  //   street: "",
+  //   city: "",
+  //   selectState: "Alabama",
+  //   zipCode: 0,
+  // });
+
+  // useRef
+  const employeeRef = useRef<EmployeeState>({
     firstName: "",
     lastName: "",
     dateBirth: "",
@@ -25,6 +38,7 @@ export const Homepage: React.FC = () => {
     selectState: "Alabama",
     zipCode: 0,
   });
+
   const [saveEmployee, setSaveEmployee] = useState<string>("nothing");
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
@@ -42,19 +56,30 @@ export const Homepage: React.FC = () => {
     e.preventDefault();
     // date de debut
     const startDate =
-      employee.startDate instanceof Date
-        ? employee.startDate.toISOString()
+      employeeRef.current.startDate instanceof Date
+        ? employeeRef.current.startDate.toISOString()
         : null;
+    console.log(startDate);
     // date de naissance
     const dateOfBirth =
-      employee.dateBirth instanceof Date
-        ? employee.dateBirth.toISOString()
+      employeeRef.current.dateBirth instanceof Date
+        ? employeeRef.current.dateBirth.toISOString()
         : null;
-    const yearOfDateBirth = new Date(employee.dateBirth || "").getFullYear();
-    if (yearOfDateBirth < 2005) {
+    const yearOfDateBirth = new Date(
+      employeeRef.current.dateBirth || ""
+    ).getFullYear();
+    if (
+      yearOfDateBirth < 2005 &&
+      employeeRef.current.firstName.length > 2 &&
+      employeeRef.current.lastName.length > 2 &&
+      employeeRef.current.street.length > 2 &&
+      employeeRef.current.city.length > 2 &&
+      !employeeRef.current.startDate &&
+      !employeeRef.current.zipCode
+    ) {
       dispatch(
         getAddEmployee({
-          ...employee,
+          ...employeeRef.current,
           startDate: startDate,
           dateBirth: dateOfBirth,
         })
@@ -67,12 +92,14 @@ export const Homepage: React.FC = () => {
 
   const handleInformationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    setEmployee((prevEmployee) => ({ ...prevEmployee, [id]: value }));
+    // setEmployee((prevEmployee) => ({ ...prevEmployee, [id]: value }));
+    employeeRef.current = { ...employeeRef.current, [id]: value };
   };
 
   const handleAdressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setEmployee((prevEmployee) => ({ ...prevEmployee, [name]: value }));
+    // setEmployee((prevEmployee) => ({ ...prevEmployee, [name]: value }));
+    employeeRef.current = { ...employeeRef.current, [name]: value };
   };
   return (
     <div>
@@ -90,12 +117,11 @@ export const Homepage: React.FC = () => {
         >
           <Information
             handleInformationChange={handleInformationChange}
-            employee={employee}
-            setEmployee={setEmployee}
+            employeeRef={employeeRef.current}
+            // setEmployee={setEmployee}
           />
           <Adress
             handleAdressChange={handleAdressChange}
-            employee={employee}
             allDepartement={allDepartement}
           />
           <button

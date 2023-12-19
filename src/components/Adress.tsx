@@ -1,5 +1,6 @@
 import { states } from "../data/states";
 import { AdressProps } from "../interfaces/interfaces";
+import { Select } from "./Select";
 
 export const Adress: React.FunctionComponent<AdressProps> = ({
   handleAdressChange,
@@ -23,17 +24,12 @@ export const Adress: React.FunctionComponent<AdressProps> = ({
           onChange={(e) => handleAdressChange(e)}
         ></input>
         <label htmlFor="state">State</label>
-        <select
-          name="state"
-          id="state"
-          onChange={(e) => {
-            handleAdressChange(e);
-          }}
-        >
-          {states.map((state, index) => (
-            <option key={index}>{state.name}</option>
-          ))}
-        </select>
+        <Select
+          name={"state"}
+          id={"state"}
+          handleAdressChange={(e) => handleAdressChange(e)}
+          selectChoice={states}
+        />
         <label htmlFor="zip-code">zip code</label>
         <input
           id="zip-code"
@@ -43,17 +39,12 @@ export const Adress: React.FunctionComponent<AdressProps> = ({
         />
       </fieldset>
       <label htmlFor="departements">departement</label>
-      <select
-        name="departements"
-        id="departements"
-        onChange={(e) => {
-          handleAdressChange(e);
-        }}
-      >
-        {allDepartement.map((oneDepartement, index) => (
-          <option key={index}>{oneDepartement}</option>
-        ))}
-      </select>
+      <Select
+        name={"departements"}
+        id={"departements"}
+        handleAdressChange={(e) => handleAdressChange(e)}
+        selectChoice={allDepartement}
+      />
     </>
   );
 };

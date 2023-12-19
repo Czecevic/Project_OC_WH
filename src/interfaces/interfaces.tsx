@@ -19,17 +19,10 @@ export interface TableHeadProps {
 }
 
 export interface EmployeeState {
-  length: number;
-  map(
-    arg0: (
-      data: EmployeeState,
-      index: number
-    ) => import("react/jsx-runtime").JSX.Element | undefined
-  ): import("react").ReactNode;
   firstName: string;
   lastName: string;
-  dateBirth: string | Date;
-  startDate: string | Date;
+  dateBirth: string | Date | null;
+  startDate: string | Date | null;
   departements: string;
   street: string;
   city: string;
@@ -39,12 +32,10 @@ export interface EmployeeState {
 
 export interface AdressProps {
   handleAdressChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  setemployee: React.Dispatch<React.SetStateAction<EmployeeState>>;
   allDepartement: string[];
 }
 
 export interface InformationProps {
   handleInformationChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  employee: EmployeeState;
-  setEmployee: React.Dispatch<React.SetStateAction<EmployeeState>>;
+  employeeRef: EmployeeState;
 }
