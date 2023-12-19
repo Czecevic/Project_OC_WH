@@ -21,7 +21,6 @@ export const TableBody: React.FunctionComponent<TableBodyProps> = ({
           return (
             <tr key={index}>
               {columns.map(({ accessor }) => {
-                console.log(data[accessor]);
                 return (
                   <td key={accessor}>
                     {accessor === "startDate" || accessor === "dateBirth"

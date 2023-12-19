@@ -2,23 +2,26 @@ import { InformationProps } from "../interfaces/interfaces";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
-import { useEffect } from "react";
 
 export const Information: React.FC<InformationProps> = ({
   handleInformationChange,
-  employeeRef,
+  date,
+  setDate,
 }) => {
-  useEffect(() => {
-    console.log(employeeRef.dateBirth);
-  });
   const getDateBirth = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (e instanceof Date) {
-      employeeRef.dateBirth = new Date(e);
+      setDate({
+        ...date,
+        dateBirth: new Date(e),
+      });
     }
   };
   const getStartDate = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (e instanceof Date) {
-      employeeRef.startDate = new Date(e);
+      setDate({
+        ...date,
+        startDate: new Date(e),
+      });
     }
   };
   return (
@@ -36,15 +39,9 @@ export const Information: React.FC<InformationProps> = ({
         onChange={(e) => handleInformationChange(e)}
       ></input>
       <label htmlFor="dateBirth">date of birth</label>
-      <DatePicker
-        onChange={(e) => getDateBirth(e)}
-        value={employeeRef.dateBirth}
-      />
+      <DatePicker onChange={(e) => getDateBirth(e)} value={date.dateBirth} />
       <label htmlFor="startDate">start date</label>
-      <DatePicker
-        onChange={(e) => getStartDate(e)}
-        value={employeeRef.startDate}
-      />
+      <DatePicker onChange={(e) => getStartDate(e)} value={date.startDate} />
     </>
   );
 };

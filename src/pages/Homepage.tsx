@@ -14,24 +14,17 @@ import { EmployeeState } from "../interfaces/interfaces";
 
 export const Homepage: React.FC = () => {
   // state
-  // const [employee, setEmployee] = useState<EmployeeState>({
-  //   firstName: "",
-  //   lastName: "",
-  //   dateBirth: "",
-  //   startDate: "",
-  //   departements: "sales",
-  //   street: "",
-  //   city: "",
-  //   selectState: "Alabama",
-  //   zipCode: 0,
-  // });
+  const [date, setDate] = useState({
+    dateBirth: new Date(),
+    startDate: new Date(),
+  });
 
   // useRef
   const employeeRef = useRef<EmployeeState>({
     firstName: "",
     lastName: "",
-    dateBirth: "",
-    startDate: "",
+    dateBirth: date.dateBirth,
+    startDate: date.startDate,
     departements: "sales",
     street: "",
     city: "",
@@ -56,26 +49,19 @@ export const Homepage: React.FC = () => {
     e.preventDefault();
     // date de debut
     const startDate =
-      employeeRef.current.startDate instanceof Date
-        ? employeeRef.current.startDate.toISOString()
-        : null;
-    console.log(startDate);
+      date.startDate instanceof Date ? date.startDate.toISOString() : null;
     // date de naissance
     const dateOfBirth =
-      employeeRef.current.dateBirth instanceof Date
-        ? employeeRef.current.dateBirth.toISOString()
-        : null;
-    const yearOfDateBirth = new Date(
-      employeeRef.current.dateBirth || ""
-    ).getFullYear();
+      date.dateBirth instanceof Date ? date.dateBirth.toISOString() : null;
+    const yearOfDateBirth = new Date(date.dateBirth || "").getFullYear();
     if (
-      yearOfDateBirth < 2005 &&
-      employeeRef.current.firstName.length > 2 &&
-      employeeRef.current.lastName.length > 2 &&
-      employeeRef.current.street.length > 2 &&
-      employeeRef.current.city.length > 2 &&
-      !employeeRef.current.startDate &&
-      !employeeRef.current.zipCode
+      (yearOfDateBirth < 2005 &&
+        employeeRef.current.firstName.length > 2 &&
+        employeeRef.current.lastName.length > 2 &&
+        employeeRef.current.street.length > 2 &&
+        employeeRef.current.city.length > 2 &&
+        employeeRef.current.zipCode != 0) ||
+      employeeRef.current.zipCode == 0
     ) {
       dispatch(
         getAddEmployee({
@@ -113,12 +99,13 @@ export const Homepage: React.FC = () => {
           action="#"
           id="create-employee"
           className="create-employee"
+          tabIndex={0}
           onSubmit={(e) => addEmployee(e)}
         >
           <Information
             handleInformationChange={handleInformationChange}
-            employeeRef={employeeRef.current}
-            // setEmployee={setEmployee}
+            date={date}
+            setDate={setDate}
           />
           <Adress
             handleAdressChange={handleAdressChange}

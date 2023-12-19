@@ -37,5 +37,14 @@ export interface AdressProps {
 
 export interface InformationProps {
   handleInformationChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  employeeRef: EmployeeState;
+  date: {
+    dateBirth: Date;
+    startDate: Date;
+  };
+  setDate: React.Dispatch<
+    React.SetStateAction<{
+      dateBirth: Date;
+      startDate: Date;
+    }>
+  >;
 }
