@@ -38,10 +38,18 @@ export const Information: React.FC<InformationProps> = ({
         id="lastName"
         onChange={(e) => handleInformationChange(e)}
       ></input>
-      <label htmlFor="dateBirth">date of birth</label>
-      <DatePicker onChange={(e) => getDateBirth(e)} value={date.dateBirth} />
-      <label htmlFor="startDate">start date</label>
-      <DatePicker onChange={(e) => getStartDate(e)} value={date.startDate} />
+      <label id="dateBirthLabel">date of birth</label>
+      <DatePicker
+        onChange={(e) => getDateBirth(e)}
+        value={date.dateBirth}
+        aria-labelledby="dateBirthLabel"
+      />
+      <label id="startDateLabel">start date</label>
+      <DatePicker
+        onChange={(e) => getStartDate(e)}
+        value={date.startDate}
+        aria-labelledby="startDateLabel"
+      />
     </>
   );
 };

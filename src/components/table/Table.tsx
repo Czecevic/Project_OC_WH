@@ -39,7 +39,9 @@ export const Table = (employees: EmployeeState) => {
           <p>entries</p>
         </div>
         <div className="SearchBar">
-          <label>Search</label>
+          <label htmlFor="search" id="search">
+            Search
+          </label>
           <input onChange={(e) => search(e.target.value)} />
         </div>
       </div>
