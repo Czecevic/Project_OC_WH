@@ -8,7 +8,9 @@ export const Information: React.FC<InformationProps> = ({
   date,
   setDate,
 }) => {
-  const getDateBirth = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const getDateBirth = (
+    e: React.ChangeEvent<HTMLInputElement> | null | Date
+  ) => {
     if (e instanceof Date) {
       setDate({
         ...date,
@@ -16,7 +18,9 @@ export const Information: React.FC<InformationProps> = ({
       });
     }
   };
-  const getStartDate = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const getStartDate = (
+    e: React.ChangeEvent<HTMLInputElement> | null | Date
+  ) => {
     if (e instanceof Date) {
       setDate({
         ...date,
@@ -40,15 +44,17 @@ export const Information: React.FC<InformationProps> = ({
       ></input>
       <label id="dateBirthLabel">date of birth</label>
       <DatePicker
-        onChange={(e) => getDateBirth(e)}
+        onChange={(e) => getDateBirth(e as Date)}
         value={date.dateBirth}
         aria-labelledby="dateBirthLabel"
+        name="dateBirthLabel"
       />
       <label id="startDateLabel">start date</label>
       <DatePicker
-        onChange={(e) => getStartDate(e)}
+        onChange={(e) => getStartDate(e as Date)}
         value={date.startDate}
         aria-labelledby="startDateLabel"
+        name="startDateLabel"
       />
     </>
   );

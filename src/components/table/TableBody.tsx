@@ -12,7 +12,7 @@ export const TableBody: React.FunctionComponent<TableBodyProps> = ({
     if (searchElement.length == tableData.length) {
       setSearchElement(tableData);
     }
-  });
+  }, [searchElement, tableData, setSearchElement]);
 
   return (
     <tbody>
@@ -21,17 +21,21 @@ export const TableBody: React.FunctionComponent<TableBodyProps> = ({
           return (
             <tr key={index}>
               {columns.map(({ accessor }) => {
+                const nameColumn = data[
+                  accessor as keyof EmployeeState
+                ] as string;
                 return (
                   <td key={accessor}>
                     {accessor === "startDate" || accessor === "dateBirth"
-                      ? data[accessor].split("T")[0]
-                      : data[accessor]}
+                      ? nameColumn.split("T")[0]
+                      : nameColumn}
                   </td>
                 );
               })}
             </tr>
           );
         }
+        return null;
       })}
     </tbody>
   );

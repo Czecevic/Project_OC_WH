@@ -5,19 +5,19 @@ import { EmployeeState } from "../../interfaces/interfaces";
 import { columns } from "../../data/Columns";
 import { useState } from "react";
 
-export const Table = (employees: EmployeeState) => {
+export const Table = ({ employees }: { employees: EmployeeState[] }) => {
   // const
   const { tableData, handleSorting } = useStorableTable(employees);
-  const [searchElement, setSearchElement] = useState<EmployeeState>(tableData);
+  const [searchElement, setSearchElement] =
+    useState<EmployeeState[]>(tableData);
   const [selectEntries, setSelectEntries] = useState<number>(10);
 
   // function search
   const search = (e: string) => {
     const resultSearch = e.toLowerCase();
     if (resultSearch.length > 2) {
-      const filterEmployee = tableData.filter(
-        (info: { [s: string]: unknown } | ArrayLike<unknown>) =>
-          Object.values(info).join("").toLowerCase().includes(resultSearch)
+      const filterEmployee = tableData.filter((info) =>
+        Object.values(info).join("").toLowerCase().includes(resultSearch)
       );
       setSearchElement(filterEmployee);
     } else {

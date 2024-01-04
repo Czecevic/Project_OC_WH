@@ -7,18 +7,22 @@ interface Column {
 
 export interface TableBodyProps {
   columns: Column[];
-  tableData: EmployeeState;
+  tableData: EmployeeState[];
   selectEntries: number;
-  searchElement: EmployeeState;
-  setSearchElement: React.Dispatch<React.SetStateAction<EmployeeState>>;
+  searchElement: EmployeeState[];
+  setSearchElement: React.Dispatch<React.SetStateAction<EmployeeState[]>>;
 }
 
 export interface TableHeadProps {
   columns: Column[];
-  handleSorting: (sortField: string, sortOrder: string) => void;
+  handleSorting: (
+    sortField: keyof EmployeeState | string,
+    sortOrder: string
+  ) => void;
 }
 
 export interface EmployeeState {
+  sortField: string;
   firstName: string;
   lastName: string;
   dateBirth: string | Date | null;
@@ -33,6 +37,13 @@ export interface EmployeeState {
 export interface AdressProps {
   handleAdressChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   allDepartement: string[];
+}
+
+export interface selectProps {
+  name: string;
+  id: string;
+  handleAdressChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  selectChoice: (string | { name: string })[];
 }
 
 export interface InformationProps {

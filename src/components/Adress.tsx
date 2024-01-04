@@ -27,7 +27,9 @@ export const Adress: React.FunctionComponent<AdressProps> = ({
         <Select
           name={"state"}
           id={"state"}
-          handleAdressChange={(e) => handleAdressChange(e)}
+          handleAdressChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+            handleAdressChange(e)
+          }
           selectChoice={states}
         />
         <label htmlFor="zip-code">zip code</label>

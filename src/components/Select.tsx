@@ -1,9 +1,4 @@
-interface selectProps {
-  name: string;
-  id: string;
-  handleAdressChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  selectChoice: (string | { name: string })[];
-}
+import { selectProps } from "../interfaces/interfaces";
 
 export const Select: React.FunctionComponent<selectProps> = ({
   name,
@@ -12,7 +7,13 @@ export const Select: React.FunctionComponent<selectProps> = ({
   selectChoice,
 }) => {
   return (
-    <select name={name} id={id} onClick={(e) => handleAdressChange(e)}>
+    <select
+      name={name}
+      id={id}
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+        handleAdressChange(event)
+      }
+    >
       {selectChoice.map(
         (selectElem: string | { name: string }, index: number) => (
           <option key={index}>

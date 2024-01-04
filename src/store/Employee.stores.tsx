@@ -4,20 +4,18 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./index";
 
-const initialState: EmployeeState = {
-  employees: [],
-};
+const initialState: EmployeeState[] = [];
 
 export const EmployeeReducer = createSlice({
   name: "EmployeeAuth",
   initialState,
   reducers: {
     getAddEmployee: (state, action: PayloadAction<EmployeeState>) => {
-      state.employees = [...state.employees, action.payload];
+      state.push(action.payload);
     },
   },
 });
 
 export const { getAddEmployee } = EmployeeReducer.actions;
-export const selectEmployee = (state: RootState) => state.Employee.employees;
+export const selectEmployee = (state: RootState) => state.Employee;
 export default EmployeeReducer.reducer;

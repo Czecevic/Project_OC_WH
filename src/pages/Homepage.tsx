@@ -21,6 +21,7 @@ export const Homepage: React.FC = () => {
 
   // useRef
   const employeeRef = useRef<EmployeeState>({
+    sortField: "",
     firstName: "",
     lastName: "",
     dateBirth: date.dateBirth,
@@ -114,6 +115,7 @@ export const Homepage: React.FC = () => {
           <button
             type="submit"
             className="saveButton"
+            name="saveButton"
             onClick={() => setIsOpen(true)}
           >
             save
@@ -122,13 +124,17 @@ export const Homepage: React.FC = () => {
         {isOpen === true &&
           (saveEmployee === "addEmployee" ? (
             <div className="popupvalide">
-              <button onClick={() => setIsOpen(false)}>X</button>
+              <button name="popupvalide" onClick={() => setIsOpen(false)}>
+                X
+              </button>
               <p>Employee Created!</p>
             </div>
           ) : (
             saveEmployee === "notAddEmployee" && (
               <div className="popup">
-                <button onClick={() => setIsOpen(false)}>X</button>
+                <button name="popup" onClick={() => setIsOpen(false)}>
+                  X
+                </button>
                 <p>Employee was not created, check your information</p>
               </div>
             )
