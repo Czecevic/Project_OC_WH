@@ -7,13 +7,7 @@ export const Select: React.FunctionComponent<selectProps> = ({
   selectChoice,
 }) => {
   return (
-    <select
-      name={name}
-      id={id}
-      onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-        handleAdressChange(event)
-      }
-    >
+    <select name={name} id={id} onChange={(event) => handleAdressChange(event)}>
       {selectChoice.map(
         (selectElem: string | { name: string }, index: number) => (
           <option key={index}>

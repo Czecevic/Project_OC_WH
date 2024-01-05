@@ -22,7 +22,7 @@ export interface TableHeadProps {
 }
 
 export interface EmployeeState {
-  sortField: string;
+  sortField?: string;
   firstName: string;
   lastName: string;
   dateBirth: string | Date | null;
@@ -35,14 +35,15 @@ export interface EmployeeState {
 }
 
 export interface AdressProps {
-  handleAdressChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleAdressInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleAdressSelectChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   allDepartement: string[];
 }
 
 export interface selectProps {
   name: string;
   id: string;
-  handleAdressChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleAdressChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   selectChoice: (string | { name: string })[];
 }
 

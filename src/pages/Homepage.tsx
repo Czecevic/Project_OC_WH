@@ -83,7 +83,15 @@ export const Homepage: React.FC = () => {
     employeeRef.current = { ...employeeRef.current, [id]: value };
   };
 
-  const handleAdressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAdressInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    // setEmployee((prevEmployee) => ({ ...prevEmployee, [name]: value }));
+    employeeRef.current = { ...employeeRef.current, [name]: value };
+  };
+
+  const handleAdressSelectChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     // setEmployee((prevEmployee) => ({ ...prevEmployee, [name]: value }));
     employeeRef.current = { ...employeeRef.current, [name]: value };
@@ -109,7 +117,8 @@ export const Homepage: React.FC = () => {
             setDate={setDate}
           />
           <Adress
-            handleAdressChange={handleAdressChange}
+            handleAdressInputChange={handleAdressInputChange}
+            handleAdressSelectChange={handleAdressSelectChange}
             allDepartement={allDepartement}
           />
           <button

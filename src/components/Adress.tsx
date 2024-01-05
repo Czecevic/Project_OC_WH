@@ -3,7 +3,8 @@ import { AdressProps } from "../interfaces/interfaces";
 import { Select } from "./Select";
 
 export const Adress: React.FunctionComponent<AdressProps> = ({
-  handleAdressChange,
+  handleAdressInputChange,
+  handleAdressSelectChange,
   allDepartement,
 }) => {
   // console.log(employee);
@@ -15,21 +16,19 @@ export const Adress: React.FunctionComponent<AdressProps> = ({
         <input
           id="street"
           name="street"
-          onChange={(e) => handleAdressChange(e)}
+          onChange={(e) => handleAdressInputChange(e)}
         ></input>
         <label htmlFor="city">City</label>
         <input
           id="city"
           name="city"
-          onChange={(e) => handleAdressChange(e)}
+          onChange={(e) => handleAdressInputChange(e)}
         ></input>
         <label htmlFor="state">State</label>
         <Select
           name={"state"}
           id={"state"}
-          handleAdressChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-            handleAdressChange(e)
-          }
+          handleAdressChange={(e) => handleAdressSelectChange(e)}
           selectChoice={states}
         />
         <label htmlFor="zip-code">zip code</label>
@@ -37,14 +36,14 @@ export const Adress: React.FunctionComponent<AdressProps> = ({
           id="zip-code"
           name="zipCode"
           type="number"
-          onChange={(e) => handleAdressChange(e)}
+          onChange={(e) => handleAdressInputChange(e)}
         />
       </fieldset>
       <label htmlFor="departements">departement</label>
       <Select
         name={"departements"}
         id={"departements"}
-        handleAdressChange={(e) => handleAdressChange(e)}
+        handleAdressChange={(e) => handleAdressSelectChange(e)}
         selectChoice={allDepartement}
       />
     </>
