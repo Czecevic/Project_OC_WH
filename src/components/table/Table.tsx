@@ -1,16 +1,20 @@
 import { TableBody } from "./TableBody";
 import { TableHead } from "./TableHead";
 import { useStorableTable } from "./useSortableTable";
+import { TablePropsInterface } from "../../interfaces/interfaces";
 import { EmployeeState } from "../../interfaces/interfaces";
 import { columns } from "../../data/Columns";
 import { useState } from "react";
 
-export const Table = ({ employees }: { employees: EmployeeState[] }) => {
+export const Table: React.FunctionComponent<TablePropsInterface> = ({
+  employees,
+  selectEntries,
+  setSelectEntries,
+}) => {
   // const
   const { tableData, handleSorting } = useStorableTable(employees);
   const [searchElement, setSearchElement] =
     useState<EmployeeState[]>(tableData);
-  const [selectEntries, setSelectEntries] = useState<number>(10);
 
   // function search
   const search = (e: string) => {

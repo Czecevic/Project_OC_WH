@@ -1,4 +1,4 @@
-import { selectProps } from "../interfaces/interfaces";
+import { selectProps } from "../../interfaces/interfaces";
 
 export const Select: React.FunctionComponent<selectProps> = ({
   name,

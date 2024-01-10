@@ -1,13 +1,12 @@
-import { states } from "../data/states";
-import { AdressProps } from "../interfaces/interfaces";
-import { Select } from "./Select";
+import { states } from "../../data/states";
+import { AdressProps } from "../../interfaces/interfaces";
+import { Select } from "../Select/Select";
 
 export const Adress: React.FunctionComponent<AdressProps> = ({
   handleAdressInputChange,
   handleAdressSelectChange,
   allDepartement,
 }) => {
-  // console.log(employee);
   return (
     <>
       <fieldset className="adress">

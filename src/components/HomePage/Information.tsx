@@ -1,4 +1,4 @@
-import { InformationProps } from "../interfaces/interfaces";
+import { InformationProps } from "../../interfaces/interfaces";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
@@ -42,19 +42,19 @@ export const Information: React.FC<InformationProps> = ({
         id="lastName"
         onChange={(e) => handleInformationChange(e)}
       ></input>
-      <label id="dateBirthLabel">date of birth</label>
+      <label htmlFor="dateBirthLabel">date of birth</label>
       <DatePicker
         onChange={(e) => getDateBirth(e as Date)}
         value={date.dateBirth}
         aria-labelledby="dateBirthLabel"
-        name="dateBirthLabel"
+        id="dateBirthLabel"
       />
-      <label id="startDateLabel">start date</label>
+      <label htmlFor="startDateLabel">start date</label>
       <DatePicker
         onChange={(e) => getStartDate(e as Date)}
         value={date.startDate}
         aria-labelledby="startDateLabel"
-        name="startDateLabel"
+        id="startDateLabel"
       />
     </>
   );

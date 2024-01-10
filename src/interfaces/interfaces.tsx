@@ -5,6 +5,12 @@ interface Column {
   sortByOrder: string;
 }
 
+export interface TablePropsInterface {
+  employees: EmployeeState[];
+  selectEntries: number;
+  setSelectEntries: (arg0: number) => void;
+}
+
 export interface TableBodyProps {
   columns: Column[];
   tableData: EmployeeState[];

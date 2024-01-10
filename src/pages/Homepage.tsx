@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 // css
 import "../style/App.css";
 // react
@@ -8,8 +7,8 @@ import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAddEmployee } from "../store/Employee.stores";
 // components
-import { Information } from "../components/Information";
-import { Adress } from "../components/Adress";
+import { Information } from "../components/HomePage/Information";
+import { Adress } from "../components/HomePage/Adress";
 import { EmployeeState } from "../interfaces/interfaces";
 
 export const Homepage: React.FC = () => {
@@ -79,13 +78,11 @@ export const Homepage: React.FC = () => {
 
   const handleInformationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    // setEmployee((prevEmployee) => ({ ...prevEmployee, [id]: value }));
     employeeRef.current = { ...employeeRef.current, [id]: value };
   };
 
   const handleAdressInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    // setEmployee((prevEmployee) => ({ ...prevEmployee, [name]: value }));
     employeeRef.current = { ...employeeRef.current, [name]: value };
   };
 
@@ -93,7 +90,6 @@ export const Homepage: React.FC = () => {
     e: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    // setEmployee((prevEmployee) => ({ ...prevEmployee, [name]: value }));
     employeeRef.current = { ...employeeRef.current, [name]: value };
   };
   return (
