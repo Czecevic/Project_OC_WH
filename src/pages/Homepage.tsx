@@ -10,6 +10,7 @@ import { getAddEmployee } from "../store/Employee.stores";
 import { Information } from "../components/HomePage/Information";
 import { Adress } from "../components/HomePage/Adress";
 import { EmployeeState } from "../interfaces/interfaces";
+import { AddEmployee } from "../components/Message/AddEmployee";
 
 export const Homepage: React.FC = () => {
   // state
@@ -32,8 +33,8 @@ export const Homepage: React.FC = () => {
     zipCode: 0,
   });
 
-  const [saveEmployee, setSaveEmployee] = useState<string>("nothing");
   const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [saveEmployee, setSaveEmployee] = useState<string>("nothing");
 
   // const
   const dispatch = useDispatch();
@@ -55,13 +56,12 @@ export const Homepage: React.FC = () => {
       date.dateBirth instanceof Date ? date.dateBirth.toISOString() : null;
     const yearOfDateBirth = new Date(date.dateBirth || "").getFullYear();
     if (
-      (yearOfDateBirth < 2005 &&
-        employeeRef.current.firstName.length > 2 &&
-        employeeRef.current.lastName.length > 2 &&
-        employeeRef.current.street.length > 2 &&
-        employeeRef.current.city.length > 2 &&
-        employeeRef.current.zipCode != 0) ||
-      employeeRef.current.zipCode == 0
+      yearOfDateBirth < 2005 &&
+      employeeRef.current.firstName.length > 2 &&
+      employeeRef.current.lastName.length > 2 &&
+      employeeRef.current.street.length > 2 &&
+      employeeRef.current.city.length > 2 &&
+      employeeRef.current.zipCode != 0
     ) {
       dispatch(
         getAddEmployee({
@@ -126,24 +126,11 @@ export const Homepage: React.FC = () => {
             save
           </button>
         </form>
-        {isOpen === true &&
-          (saveEmployee === "addEmployee" ? (
-            <div className="popupvalide">
-              <button name="popupvalide" onClick={() => setIsOpen(false)}>
-                X
-              </button>
-              <p>Employee Created!</p>
-            </div>
-          ) : (
-            saveEmployee === "notAddEmployee" && (
-              <div className="popup">
-                <button name="popup" onClick={() => setIsOpen(false)}>
-                  X
-                </button>
-                <p>Employee was not created, check your information</p>
-              </div>
-            )
-          ))}
+        <AddEmployee
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          saveEmployee={saveEmployee}
+        ></AddEmployee>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectEmployee } from "../store/Employee.stores";
 import { Link } from "react-router-dom";
-import { Table } from "../components/table/Table";
+import { Table } from "../components/Table/Table";
 import { employeeMock } from "../data/mock/mock";
 export const CurrentEmployees = () => {
   const employees = useSelector(selectEmployee);
