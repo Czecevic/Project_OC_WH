@@ -43,10 +43,12 @@ export const Table: React.FunctionComponent<TablePropsInterface> = ({
           <p>entries</p>
         </div>
         <div className="SearchBar">
-          <label htmlFor="search" id="search">
-            Search
-          </label>
-          <input onChange={(e) => search(e.target.value)} />
+          <label htmlFor="search">Search</label>
+          <input
+            onChange={(e) => search(e.target.value)}
+            id="search"
+            name="search"
+          />
         </div>
       </div>
       <table className="table">

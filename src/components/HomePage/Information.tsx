@@ -42,14 +42,14 @@ export const Information: React.FC<InformationProps> = ({
         id="lastName"
         onChange={(e) => handleInformationChange(e)}
       ></input>
-      <label htmlFor="dateBirthLabel">date of birth</label>
+      <label htmlFor="date">date of birth</label>
       <DatePicker
         onChange={(e) => getDateBirth(e as Date)}
         value={date.dateBirth}
         aria-labelledby="dateBirthLabel"
         id="dateBirthLabel"
       />
-      <label htmlFor="startDateLabel">start date</label>
+      <label htmlFor="date">start date</label>
       <DatePicker
         onChange={(e) => getStartDate(e as Date)}
         value={date.startDate}
