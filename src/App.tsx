@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Homepage } from "./pages/Homepage.tsx";
+import { CreateEmployee } from "./pages/CreateEmployees.tsx";
 import { CurrentEmployees } from "./pages/CurrentEmployees.tsx";
 
 export const App = () => {
@@ -7,6 +8,10 @@ export const App = () => {
     {
       path: "/",
       element: <Homepage />,
+    },
+    {
+      path: "/create-employee",
+      element: <CreateEmployee />,
     },
     {
       path: "/employee-list",

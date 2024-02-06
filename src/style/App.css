@@ -1,4 +1,21 @@
-/* HomePage  */
+/* Homepage */
+.logoWithPage {
+  display: flex;
+  flex-direction: column;
+}
+
+.logoWithPage ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logoWithPage ul li {
+  list-style-type: none;
+}
+
+/* Create employee  */
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -71,7 +88,7 @@ td {
 }
 
 th {
-  color: white;
+  color: rgb(0, 0, 0);
   text-align: center;
 }
 
@@ -95,7 +112,7 @@ th {
 }
 
 .read-the-docs {
-  color: #888;
+  color: #000000;
 }
 
 /* popup  */
