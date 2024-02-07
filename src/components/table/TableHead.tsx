@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from "react";
-import { TableHeadProps } from "../../interfaces/interfaces";
+import { EmployeeState, TableHeadProps } from "../../interfaces/interfaces";
 
 export const TableHead: FunctionComponent<TableHeadProps> = ({
   columns,
@@ -9,7 +9,7 @@ export const TableHead: FunctionComponent<TableHeadProps> = ({
   const [sortField, setSortField] = useState<string>("");
   const [order, setOrder] = useState<string>("asc");
 
-  const handleSortingChange = (sortField: string) => {
+  const handleSortingChange = (sortField: keyof EmployeeState | string) => {
     const sortOfOrder =
       sortField === sortField && order === "asc" ? "desc" : "asc";
     setSortField(sortField);
