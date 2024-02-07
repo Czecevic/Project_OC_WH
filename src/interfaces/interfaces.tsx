@@ -5,31 +5,34 @@ interface Column {
   sortByOrder: string;
 }
 
+export interface TablePropsInterface {
+  employees: EmployeeState[];
+  selectEntries: number;
+  setSelectEntries: (arg0: number) => void;
+}
+
 export interface TableBodyProps {
   columns: Column[];
-  tableData: EmployeeState;
+  tableData: EmployeeState[];
   selectEntries: number;
-  searchElement: EmployeeState;
-  setSearchElement: React.Dispatch<React.SetStateAction<EmployeeState>>;
+  searchElement: EmployeeState[];
+  setSearchElement: React.Dispatch<React.SetStateAction<EmployeeState[]>>;
 }
 
 export interface TableHeadProps {
   columns: Column[];
-  handleSorting: (sortField: string, sortOrder: string) => void;
+  handleSorting: (
+    sortField: keyof EmployeeState | string,
+    sortOrder: string
+  ) => void;
 }
 
 export interface EmployeeState {
-  length: number;
-  map(
-    arg0: (
-      data: EmployeeState,
-      index: number
-    ) => import("react/jsx-runtime").JSX.Element | undefined
-  ): import("react").ReactNode;
+  sortField?: string;
   firstName: string;
   lastName: string;
-  dateBirth: string | Date;
-  startDate: string | Date;
+  dateBirth: string | Date | null;
+  startDate: string | Date | null;
   departements: string;
   street: string;
   city: string;
@@ -38,13 +41,28 @@ export interface EmployeeState {
 }
 
 export interface AdressProps {
-  handleAdressChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  setemployee: React.Dispatch<React.SetStateAction<EmployeeState>>;
+  handleAdressInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleAdressSelectChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   allDepartement: string[];
+}
+
+export interface selectProps {
+  name: string;
+  id: string;
+  handleAdressChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  selectChoice: (string | { name: string })[];
 }
 
 export interface InformationProps {
   handleInformationChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  employee: EmployeeState;
-  setEmployee: React.Dispatch<React.SetStateAction<EmployeeState>>;
+  date: {
+    dateBirth: Date;
+    startDate: Date;
+  };
+  setDate: React.Dispatch<
+    React.SetStateAction<{
+      dateBirth: Date;
+      startDate: Date;
+    }>
+  >;
 }

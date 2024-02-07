@@ -1,23 +1,27 @@
 import { TableBody } from "./TableBody";
 import { TableHead } from "./TableHead";
 import { useStorableTable } from "./useSortableTable";
+import { TablePropsInterface } from "../../interfaces/interfaces";
 import { EmployeeState } from "../../interfaces/interfaces";
 import { columns } from "../../data/Columns";
 import { useState } from "react";
 
-export const Table = (employees: EmployeeState) => {
+export const Table: React.FunctionComponent<TablePropsInterface> = ({
+  employees,
+  selectEntries,
+  setSelectEntries,
+}) => {
   // const
   const { tableData, handleSorting } = useStorableTable(employees);
-  const [searchElement, setSearchElement] = useState<EmployeeState>(tableData);
-  const [selectEntries, setSelectEntries] = useState<number>(10);
+  const [searchElement, setSearchElement] =
+    useState<EmployeeState[]>(tableData);
 
   // function search
   const search = (e: string) => {
     const resultSearch = e.toLowerCase();
     if (resultSearch.length > 2) {
-      const filterEmployee = tableData.filter(
-        (info: { [s: string]: unknown } | ArrayLike<unknown>) =>
-          Object.values(info).join("").toLowerCase().includes(resultSearch)
+      const filterEmployee = tableData.filter((info) =>
+        Object.values(info).join("").toLowerCase().includes(resultSearch)
       );
       setSearchElement(filterEmployee);
     } else {
@@ -39,8 +43,12 @@ export const Table = (employees: EmployeeState) => {
           <p>entries</p>
         </div>
         <div className="SearchBar">
-          <label>Search</label>
-          <input onChange={(e) => search(e.target.value)} />
+          <label htmlFor="search">Search</label>
+          <input
+            onChange={(e) => search(e.target.value)}
+            id="search"
+            name="search"
+          />
         </div>
       </div>
       <table className="table">
