@@ -161,21 +161,8 @@ th {
   width: 100%;
 }
 
-.react-date-picker__calendar .react-calendar {
-  background-color: #1a1a1a;
-  border-radius: 5px;
-}
-
-.react-calendar__navigation__label:disabled {
-  color: #1a1a1a;
-}
-
-.react-calendar__navigation button:disabled {
-  color: #1a1a1a;
-}
-
-.react-date-picker__calendar .react-calendar button:hover {
-  color: #1a1a1a;
+.react-date-picker button {
+  filter: invert(1);
 }
 
 .react-date-picker__button svg {
