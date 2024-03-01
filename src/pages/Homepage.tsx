@@ -1,6 +1,7 @@
 // css
 import "../style/App.css";
 import imgLogo from "../assets/logo-removebg.png";
+import { Link } from "react-router-dom";
 
 export const Homepage: React.FC = () => {
   return (
@@ -8,10 +9,10 @@ export const Homepage: React.FC = () => {
       <img src={imgLogo}></img>
       <ul>
         <li>
-          <a href="/create-employee">Create Employee</a>
+          <Link to="/create-employee">Create Employee</Link>
         </li>
         <li>
-          <a href="/employee-list">List of Employee</a>
+          <Link to="/employee-list">List of Employee</Link>
         </li>
       </ul>
     </div>
