@@ -10,7 +10,9 @@ import { getAddEmployee } from "../store/Employee.stores";
 import { Information } from "../components/HomePage/Information";
 import { Adress } from "../components/HomePage/Adress";
 import { EmployeeState } from "../interfaces/interfaces";
-import { AddEmployee } from "../components/Message/AddEmployee";
+
+// modal externe
+import { UseModal } from "react_modal_openclassrooms";
 
 export const CreateEmployee: React.FC = () => {
   // state
@@ -21,7 +23,6 @@ export const CreateEmployee: React.FC = () => {
 
   // useRef
   const employeeRef = useRef<EmployeeState>({
-    sortField: "",
     firstName: "",
     lastName: "",
     dateBirth: date.dateBirth,
@@ -33,8 +34,8 @@ export const CreateEmployee: React.FC = () => {
     zipCode: 0,
   });
 
-  const [isOpen, setIsOpen] = useState<boolean>(true);
-  const [saveEmployee, setSaveEmployee] = useState<string>("nothing");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [valid, setValid] = useState<boolean>(false);
 
   // const
   const dispatch = useDispatch();
@@ -70,9 +71,9 @@ export const CreateEmployee: React.FC = () => {
           dateBirth: dateOfBirth,
         })
       );
-      setSaveEmployee("addEmployee");
+      setValid(true);
     } else {
-      setSaveEmployee("notAddEmployee");
+      setValid(false);
     }
   };
 
@@ -121,16 +122,19 @@ export const CreateEmployee: React.FC = () => {
             type="submit"
             className="saveButton"
             name="saveButton"
-            onClick={() => setIsOpen(true)}
+            onClick={() => setIsOpen(!isOpen)}
           >
             save
           </button>
         </form>
-        <AddEmployee
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          saveEmployee={saveEmployee}
-        ></AddEmployee>
+        <UseModal
+          employee={employeeRef}
+          submitButton={isOpen}
+          setSubmitButton={setIsOpen}
+          messageValid={"valid"}
+          messageError={"notValid"}
+          validCondition={valid}
+        />
       </div>
     </div>
   );

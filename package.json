@@ -16,6 +16,7 @@
     "@mui/material": "^5.15.0",
     "@reduxjs/toolkit": "^1.9.7",
     "react": "^18.2.0",
+    "react_modal_openclassrooms": "^1.2.3",
     "react-calendar": "^4.7.0",
     "react-date-picker": "^10.6.0",
     "react-dom": "^18.2.0",
