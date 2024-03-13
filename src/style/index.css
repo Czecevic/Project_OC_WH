@@ -25,6 +25,10 @@
   animation: AnimateBG 15s ease infinite;
 }
 
+#root {
+  width: 50%;
+}
+
 @-webkit-keyframes AnimateBG {
   0% {
     background-position: 0% 50%;
