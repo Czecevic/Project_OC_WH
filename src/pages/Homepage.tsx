@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export const Homepage: React.FC = () => {
   return (
     <div className="logoWithPage">
-      <img src={imgLogo}></img>
+      <img src={imgLogo} alt="logoImg"></img>
       <h1 className="titleLogo">Wealth Health</h1>
       <ul>
         <li>
