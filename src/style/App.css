@@ -2,6 +2,21 @@
 .logoWithPage {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.logoWithPage img {
+  width: 40%;
+  animation: rotating 15s linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .logoWithPage ul {
@@ -9,10 +24,16 @@
   padding: 0;
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .logoWithPage ul li {
   list-style-type: none;
+}
+
+.titleLogo {
+  font: small-caps 24px/1 sans-serif;
+  font-size: 60px;
 }
 
 /* Create employee  */
@@ -122,47 +143,6 @@ th {
   color: #000000;
 }
 
-/* popup  */
-
-.popup {
-  position: absolute;
-  top: 50%;
-  left: 35%;
-  right: 35%;
-  font-size: 20px;
-  border-radius: 15px;
-  background: #1a1a1a;
-  color: crimson;
-  display: flex;
-  justify-content: space-between;
-  padding: 15px;
-  flex-direction: row-reverse;
-  align-items: flex-start;
-}
-
-.popupvalide {
-  position: absolute;
-  top: 50%;
-  left: 35%;
-  right: 35%;
-  font-size: 20px;
-  border-radius: 15px;
-  background: #1a1a1a;
-  color: lightgreen;
-  display: flex;
-  justify-content: space-between;
-  padding: 15px;
-  flex-direction: row-reverse;
-  align-items: flex-start;
-}
-
-.popup button {
-  border: none;
-  background: none;
-  padding: 0;
-  margin: 0;
-}
-
 /* calendrier */
 .react-date-picker {
   width: 100%;
@@ -181,6 +161,15 @@ th {
   color: #dddddd;
 }
 
-.react-calendar__tile--now {
+.react-calendar__navigation__label {
   background: none !important;
+  color: #dddddd;
+}
+
+.react-calendar__tile--now,
+.react-calendar__century-view__decades__decade:hover,
+.react-calendar__decade-view__years__year:hover,
+.react-calendar__year-view__months__month:hover,
+.react-calendar__month-view__days__day:hover {
+  color: #000000;
 }

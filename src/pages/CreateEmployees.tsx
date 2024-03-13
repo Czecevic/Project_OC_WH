@@ -72,6 +72,7 @@ export const CreateEmployee: React.FC = () => {
         })
       );
       setValid(true);
+      (e.target as HTMLFormElement).reset();
     } else {
       setValid(false);
     }
@@ -131,8 +132,8 @@ export const CreateEmployee: React.FC = () => {
           employee={employeeRef}
           submitButton={isOpen}
           setSubmitButton={setIsOpen}
-          messageValid={"valid"}
-          messageError={"notValid"}
+          messageValid={"Employee added successfully"}
+          messageError={"Failed to add employee"}
           validCondition={valid}
         />
       </div>
