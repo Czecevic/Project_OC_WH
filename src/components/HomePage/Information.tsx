@@ -48,6 +48,7 @@ export const Information: React.FC<InformationProps> = ({
         value={date.dateBirth}
         aria-labelledby="dateBirthLabel"
         id="dateBirthLabel"
+        format="dd/MM/yyyy"
       />
       <label htmlFor="date">start date</label>
       <DatePicker
