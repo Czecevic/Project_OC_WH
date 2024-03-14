@@ -8,7 +8,6 @@ export const useStorableTable = (employees: EmployeeState[]) => {
     sortField: keyof EmployeeState | string,
     sortOrder: string
   ) => {
-    // console.log(employees);
     if (sortField) {
       const sorted = [...tableData].sort(
         (a: EmployeeState, b: EmployeeState) => {

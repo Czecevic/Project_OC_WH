@@ -55,6 +55,7 @@ export const Information: React.FC<InformationProps> = ({
         value={date.startDate}
         aria-labelledby="startDateLabel"
         id="startDateLabel"
+        format="dd/MM/yyyy"
       />
     </>
   );

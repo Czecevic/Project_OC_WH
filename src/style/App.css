@@ -58,6 +58,7 @@
   border: none;
   border-radius: 5px;
   text-align: center;
+  font-size: 16px;
 }
 
 .adress {
@@ -174,4 +175,11 @@ th {
 .react-calendar__year-view__months__month:hover,
 .react-calendar__month-view__days__day:hover {
   color: #000000;
+}
+
+.react-datetime-picker__calendar--open,
+.react-datetime-picker__calendar--closed,
+.react-datetime-picker__clock--open,
+.react-datetime-picker__clock--closed {
+  position: absolute;
 }

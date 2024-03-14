@@ -38,7 +38,6 @@ export const CreateEmployee: React.FC = () => {
   const [valid, setValid] = useState<boolean>(false);
 
   // const
-  const dispatch = useDispatch();
   const allDepartement = [
     "Sales",
     "Marketing",
@@ -47,6 +46,7 @@ export const CreateEmployee: React.FC = () => {
     "Legal",
   ];
 
+  const dispatch = useDispatch();
   const addEmployee = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // date de debut

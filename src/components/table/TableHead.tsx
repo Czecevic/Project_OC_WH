@@ -6,7 +6,7 @@ export const TableHead: FunctionComponent<TableHeadProps> = ({
   handleSorting,
 }) => {
   // state
-  const [sortField, setSortField] = useState<string>("");
+  const [sortField, setSortField] = useState<keyof EmployeeState | string>("");
   const [order, setOrder] = useState<string>("asc");
 
   const handleSortingChange = (sortField: keyof EmployeeState | string) => {
@@ -20,13 +20,12 @@ export const TableHead: FunctionComponent<TableHeadProps> = ({
     <thead>
       <tr>
         {columns.map(({ label, accessor, sortable }) => {
-          const cl = sortable
-            ? sortField === accessor && order === "asc"
-              ? "up"
-              : sortField === accessor && order === "desc"
-              ? "down"
-              : "default"
-            : "";
+          const cl =
+            sortable && sortField === accessor
+              ? order === "asc"
+                ? "up"
+                : "down"
+              : "default";
           return (
             <th
               key={accessor}
